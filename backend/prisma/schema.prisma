@@ -1,0 +1,81 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum LoanStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  FUNDED
+  DRAWN
+  REPAID
+  DEFAULTED
+}
+
+enum TreasuryEventType {
+  FUND_LOAN
+  AAVE_SUPPLY
+  AAVE_WITHDRAW
+  REPAYMENT_RECEIVED
+  DEFAULT_MARKED
+  SCORE_UPDATE
+}
+
+model LoanRequest {
+  id                     String     @id @default(uuid())
+  borrowerAddress        String
+  requestedAmount        BigInt
+  requestedDurationSeconds Int
+  purpose                String
+  status                 LoanStatus @default(PENDING)
+
+  // Set after agent decision
+  loanVaultAddress       String?
+  termsPrincipal         BigInt?
+  termsAprBps            Int?
+  dueTimestamp           Int?
+  decisionRationale      String?
+
+  // Timestamps
+  createdAt              DateTime   @default(now())
+  updatedAt              DateTime   @updatedAt
+  fundedAt               DateTime?
+  drawnAt                DateTime?
+  repaidAt               DateTime?
+  defaultedAt            DateTime?
+
+  // On-chain tx hashes
+  deployTxHash           String?
+  fundTxHash             String?
+
+  @@index([borrowerAddress])
+  @@index([status])
+}
+
+model BorrowerScoreCache {
+  address        String   @id
+  scoreValue     Int      @default(500)
+  loansTaken     Int      @default(0)
+  loansRepaid    Int      @default(0)
+  loansDefaulted Int      @default(0)
+  lastSyncedAt   DateTime @default(now())
+}
+
+model TreasuryEvent {
+  id            String             @id @default(uuid())
+  type          TreasuryEventType
+  amount        BigInt
+  relatedLoanId String?
+  txHash        String?
+  metadata      Json?
+  timestamp     DateTime           @default(now())
+
+  @@index([type])
+  @@index([timestamp])
+}

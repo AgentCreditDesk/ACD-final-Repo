@@ -1,0 +1,8 @@
+{
+  "CreditScoreOracle": "0xA6258913049D79E9BD2Bf2CdD9924CFE1188FD57",
+  "LoanVaultFactory": "0xd8dCAB1bAE33077a902f51db8DdB22F743FDdb2A",
+  "deployer": "0xE74686Fd89ACB480B3903724C367395d86ED4519",
+  "network": "baseSepolia",
+  "chainId": "84532",
+  "timestamp": "2026-03-18T09:38:33.383Z"
+}

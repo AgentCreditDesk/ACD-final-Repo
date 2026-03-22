@@ -1,0 +1,273 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════
+   AGENT CREDIT DESK — Design System
+   Dark, Web3-native, synthesis.md inspired
+   ═══════════════════════════════════════════════════════════ */
+
+@theme inline {
+  --color-background: #030712;
+  --color-foreground: #e2e8f0;
+  --color-surface: #0a0f1a;
+  --color-surface-light: #111827;
+  --color-border: #1e293b;
+  --color-teal: #00C2A8;
+  --color-teal-dim: #00C2A840;
+  --color-purple: #8b5cf6;
+  --color-purple-dim: #8b5cf640;
+  --font-sans: var(--font-sora), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* ─── Dot Grid Background ──────────────────────────────── */
+
+.dot-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(0, 194, 168, 0.12) 1px, transparent 0);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 40%, transparent 100%);
+}
+
+.dot-grid::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(139, 92, 246, 0.06) 1px, transparent 0);
+  background-size: 80px 80px;
+  animation: grid-drift 20s linear infinite;
+}
+
+@keyframes grid-drift {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(80px, 80px); }
+}
+
+/* ─── Grain Overlay ────────────────────────────────────── */
+
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ─── Glassmorphism ────────────────────────────────────── */
+
+.glass {
+  background: rgba(10, 15, 26, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-strong {
+  background: rgba(10, 15, 26, 0.8);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ─── Glow Effects ─────────────────────────────────────── */
+
+.glow-teal {
+  box-shadow:
+    0 0 20px rgba(0, 194, 168, 0.15),
+    0 0 60px rgba(0, 194, 168, 0.05),
+    inset 0 0 20px rgba(0, 194, 168, 0.02);
+}
+
+.glow-purple {
+  box-shadow:
+    0 0 20px rgba(139, 92, 246, 0.15),
+    0 0 60px rgba(139, 92, 246, 0.05),
+    inset 0 0 20px rgba(139, 92, 246, 0.02);
+}
+
+.hover-glow {
+  transition: box-shadow 0.4s ease, border-color 0.4s ease, transform 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow:
+    0 0 30px rgba(0, 194, 168, 0.2),
+    0 0 80px rgba(0, 194, 168, 0.05);
+  border-color: rgba(0, 194, 168, 0.3);
+  transform: translateY(-2px);
+}
+
+/* ─── Animated Gradient Border ─────────────────────────── */
+
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 194, 168, 0.4),
+    rgba(139, 92, 246, 0.1),
+    rgba(0, 194, 168, 0.05),
+    rgba(139, 92, 246, 0.4)
+  );
+  background-size: 300% 300%;
+  animation: border-shimmer 8s ease infinite;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes border-shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ─── Gradient Text ────────────────────────────────────── */
+
+.text-gradient {
+  background: linear-gradient(135deg, #00C2A8, #8b5cf6, #00C2A8);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 6s ease infinite;
+}
+
+.text-gradient-static {
+  background: linear-gradient(135deg, #00C2A8 0%, #00e6c8 40%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ─── Pulse Animations ─────────────────────────────────── */
+
+.pulse-teal {
+  animation: pulse-teal-kf 3s ease-in-out infinite;
+}
+
+@keyframes pulse-teal-kf {
+  0%, 100% { box-shadow: 0 0 10px rgba(0, 194, 168, 0.2); }
+  50% { box-shadow: 0 0 30px rgba(0, 194, 168, 0.4), 0 0 60px rgba(0, 194, 168, 0.1); }
+}
+
+/* ─── Terminal Style ───────────────────────────────────── */
+
+.terminal {
+  font-family: var(--font-mono);
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(0, 194, 168, 0.15);
+  border-radius: 12px;
+}
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.terminal-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+/* ─── Status Badges (dark theme) ───────────────────────── */
+
+.status-pending { background: rgba(234, 179, 8, 0.15); color: #fbbf24; border: 1px solid rgba(234, 179, 8, 0.25); }
+.status-approved { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.25); }
+.status-rejected { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.25); }
+.status-funded { background: rgba(139, 92, 246, 0.15); color: #a78bfa; border: 1px solid rgba(139, 92, 246, 0.25); }
+.status-drawn { background: rgba(249, 115, 22, 0.15); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.25); }
+.status-repaid { background: rgba(0, 194, 168, 0.15); color: #00C2A8; border: 1px solid rgba(0, 194, 168, 0.25); }
+.status-defaulted { background: rgba(239, 68, 68, 0.25); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.4); }
+
+/* ─── Scrollbar ────────────────────────────────────────── */
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(0, 194, 168, 0.2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0, 194, 168, 0.4); }
+
+/* ─── Orbs ─────────────────────────────────────────────── */
+
+.orb { position: absolute; border-radius: 50%; filter: blur(100px); pointer-events: none; }
+.orb-teal { background: radial-gradient(circle, rgba(0, 194, 168, 0.3) 0%, transparent 70%); }
+.orb-purple { background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 70%); }
+
+/* ─── Section Cards (Treasury) ─────────────────────────── */
+
+.section-card {
+  background: rgba(10, 15, 26, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.section-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ─── Utility ──────────────────────────────────────────── */
+
+.line-glow {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 194, 168, 0.5), transparent);
+}
+
+::selection {
+  background: rgba(0, 194, 168, 0.3);
+  color: #fff;
+}
+
+/* ─── Blinking Cursor ──────────────────────────────────── */
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.cursor-blink::after {
+  content: "|";
+  animation: blink 1s step-end infinite;
+  color: #00C2A8;
+  margin-left: 2px;
+}

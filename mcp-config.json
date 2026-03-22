@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "agent-credit-desk": {
+      "command": "npx",
+      "args": ["tsx", "src/mcp/server.ts"],
+      "cwd": "./backend",
+      "env": {
+        "DATABASE_URL": "${DATABASE_URL}",
+        "RPC_URL": "https://sepolia.base.org",
+        "TREASURY_PRIVATE_KEY": "${TREASURY_PRIVATE_KEY}"
+      }
+    }
+  }
+}

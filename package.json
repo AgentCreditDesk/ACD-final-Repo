@@ -1,0 +1,20 @@
+{
+  "name": "agent-credit-desk",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Autonomous lending agent for Tether Hackathon Galáctica — WDK Edition 1",
+  "scripts": {
+    "contracts:compile": "cd contracts && npx hardhat compile",
+    "contracts:test": "cd contracts && npx hardhat test",
+    "contracts:deploy:local": "cd contracts && npx hardhat run scripts/deploy.ts --network localhost",
+    "contracts:deploy:base-sepolia": "cd contracts && npx hardhat run scripts/deploy.ts --network baseSepolia",
+    "contracts:node": "cd contracts && npx hardhat node",
+    "contracts:copy-abis": "cd contracts && node scripts/copy-abis.js",
+    "backend:dev": "cd backend && npx tsx src/index.ts",
+    "backend:db:push": "cd backend && npx prisma db push",
+    "backend:db:studio": "cd backend && npx prisma studio",
+    "frontend:dev": "cd frontend && npm run dev",
+    "frontend:build": "cd frontend && npm run build",
+    "install:all": "cd contracts && npm install && cd ../backend && npm install && cd ../frontend && npm install"
+  }
+}

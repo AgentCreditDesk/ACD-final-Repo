@@ -1,0 +1,46 @@
+# Dependencies
+node_modules/
+DEMO_SCRIPT.md
+.mcp.json
+PPT_CONTENT.md
+PITCH_SCRIPT.md
+Agent-Credit-Desk.pdf
+
+# Build outputs
+dist/
+.next/
+out/
+
+# Hardhat
+contracts/cache/
+contracts/artifacts/
+contracts/typechain-types/
+
+# Environment files (contain secrets)
+.env
+.env.local
+
+Agent Credit Desk – Lending Bot Architecture and Build Guide.pdf
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Prisma
+backend/prisma/migrations/
+HANDOFF.md
+
+agent/
+
+
+# Claude Code
+.claude/
