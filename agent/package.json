@@ -1,0 +1,13 @@
+{
+  "name": "acd-underwriter-agent",
+  "version": "1.0.0",
+  "description": "Autonomous underwriting agent for Agent Credit Desk",
+  "type": "module",
+  "scripts": {
+    "start": "node agent-loop.mjs",
+    "dev": "node --watch agent-loop.mjs"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  }
+}

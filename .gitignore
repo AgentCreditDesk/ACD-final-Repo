@@ -39,8 +39,6 @@ npm-debug.log*
 backend/prisma/migrations/
 HANDOFF.md
 
-agent/
-
 
 # Claude Code
 .claude/
